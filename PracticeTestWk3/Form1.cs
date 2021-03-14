@@ -19,35 +19,36 @@ namespace PracticeTestWk3
 
         private void btnDraw_Click(object sender, EventArgs e)
         {
-            Graphics gPaper = picbxDrawing.CreateGraphics();
-            SolidBrush bGreen = new SolidBrush(Color.Green);
-            SolidBrush bYellow = new SolidBrush(Color.Yellow);
+            Graphics gPaper = picbxDrawing.CreateGraphics();                                  // creates picture object out of picture box
+            SolidBrush bGreen = new SolidBrush(Color.Green);                                  // creates green brush object
+            SolidBrush bYellow = new SolidBrush(Color.Yellow);                                // creates yellow brush object
             if (txbxProportion.Text == "")
             {
-                fail();
+                fail();                                                                       // if nothing is presented in textbox
             }
             else 
             {
-                int result = Convert.ToInt32((Convert.ToDouble(txbxProportion.Text) * 100));
-                if (result > 100 || result < 10)
+                double result = Convert.ToDouble(txbxProportion.Text);                        // turns text in the textbox (string) to double
+                if (result > 1.0 || result < 0)                                               // checks to see if the result is between 0 and 1 (no outliers like 1.01 and -0.1)
                 {
-                    fail();
+                    fail();                                                                   // if requirements are not met
                 }
-                else
+                else                                                                          // the textbox number is valid
                 {
-                    int remainder = 100 - result;
-                    gPaper.FillRectangle(bGreen, 0, 0, result*2, 150);
-                    gPaper.FillRectangle(bYellow, result*2, 0, remainder*2, 150);
+                    int intResult = Convert.ToInt32(result * 100);                            // turns double into int for the graphic and textbox between 0 and 100
+                    int remainder = 100 - Convert.ToInt32(result * 100);                      // turns double into int for the graphic and textbox between 0 and 100
+                    gPaper.FillRectangle(bGreen, 0, 0, intResult*2, 150);                     // creates green rectangle in gPaper
+                    gPaper.FillRectangle(bYellow, intResult*2, 0, remainder*2, 150);          // created yellow rectangle in gPaper
 
-                    lblResult.Text = "The rectangle is " + Convert.ToString(result) + "% green and " + Convert.ToString(remainder) + "% yellow";
+                    lblResult.Text = "The rectangle is " + Convert.ToString(intResult) + "% green and " + Convert.ToString(remainder) + "% yellow";     // prints label
 
                 }
             }
         }
 
-        private void fail()
+        private void fail()                                                                   // called when requirements are not met for Proportion test
         {
-            lblResult.Text = "Please enter a valid number between 0.0 and 1.0. E.g. 0.5846";
+            lblResult.Text = "Please enter a valid number between 0.0 and 1.0. E.g. 0.5846";  // prints label
         }
     }
 }
