@@ -1,4 +1,10 @@
-﻿using System;
+﻿/* 
+Name: James Moon
+Date: 17/3/2021
+Description: The objective of the code is to take a value between 0.0 and 1.0 and create a rectangle coloured in a specific size
+*/
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,31 +30,31 @@ namespace PracticeTestWk3
             SolidBrush bYellow = new SolidBrush(Color.Yellow);                                // creates yellow brush object
             if (txbxProportion.Text == "")
             {
-                fail();                                                                       // if nothing is presented in textbox
+                txbxResult.Text = "Please enter a valid number into the textbox. E.g. 0.5846";  // prints label                                                                       // if nothing is presented in textbox
             }
             else 
             {
                 double result = Convert.ToDouble(txbxProportion.Text);                        // turns text in the textbox (string) to double
-                if (result > 1.0 || result < 0)                                               // checks to see if the result is between 0 and 1 (no outliers like 1.01 and -0.1)
+                int intResult = Convert.ToInt32(result * 100);                               // turns double into int for the graphic and textbox between 0 and 100
+                int remainder = 100 - Convert.ToInt32(result * 100);                         // turns double into int for the graphic and textbox between 0 and 100
+                if (intResult > 100)
                 {
-                    fail();                                                                   // if requirements are not met
+                    gPaper.FillRectangle(bGreen, 0, 0, 200, 100);
+                    txbxResult.Text = "The rectangle is 100% green because " + intResult + "% makes no sense";
                 }
-                else                                                                          // the textbox number is valid
+                else if (intResult < 0)
                 {
-                    int intResult = Convert.ToInt32(result * 100);                            // turns double into int for the graphic and textbox between 0 and 100
-                    int remainder = 100 - Convert.ToInt32(result * 100);                      // turns double into int for the graphic and textbox between 0 and 100
-                    gPaper.FillRectangle(bGreen, 0, 0, intResult*2, 150);                     // creates green rectangle in gPaper
-                    gPaper.FillRectangle(bYellow, intResult*2, 0, remainder*2, 150);          // created yellow rectangle in gPaper
-
-                    lblResult.Text = "The rectangle is " + Convert.ToString(intResult) + "% green and " + Convert.ToString(remainder) + "% yellow";     // prints label
-
+                    gPaper.FillRectangle(bYellow, 0, 0, 200, 100);
+                    txbxResult.Text = "The rectangle is 0% becasue " + intResult + "% makes no sense";
                 }
+                else
+                {
+                    gPaper.FillRectangle(bGreen, 0, 0, intResult * 2, 150);                      // creates green rectangle in gPaper
+                    gPaper.FillRectangle(bYellow, intResult * 2, 0, remainder * 2, 150);          // created yellow rectangle in gPaper
+                    txbxResult.Text = "The rectangle is " + Convert.ToString(intResult) + "% green and " + Convert.ToString(remainder) + "% yellow";     // prints label
+                }
+                
             }
-        }
-
-        private void fail()                                                                   // called when requirements are not met for Proportion test
-        {
-            lblResult.Text = "Please enter a valid number between 0.0 and 1.0. E.g. 0.5846";  // prints label
         }
     }
 }

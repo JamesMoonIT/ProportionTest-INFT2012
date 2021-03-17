@@ -33,7 +33,7 @@ namespace PracticeTestWk3
             this.lblProportion = new System.Windows.Forms.Label();
             this.btnDraw = new System.Windows.Forms.Button();
             this.picbxDrawing = new System.Windows.Forms.PictureBox();
-            this.lblResult = new System.Windows.Forms.Label();
+            this.txbxResult = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picbxDrawing)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,21 +71,24 @@ namespace PracticeTestWk3
             this.picbxDrawing.TabIndex = 3;
             this.picbxDrawing.TabStop = false;
             // 
-            // lblResult
+            // txbxResult
             // 
-            this.lblResult.ForeColor = System.Drawing.Color.Maroon;
-            this.lblResult.Location = new System.Drawing.Point(96, 334);
-            this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(200, 40);
-            this.lblResult.TabIndex = 4;
-            this.lblResult.Text = "Please enter a proportion between 0.0 and 1.0";
+            this.txbxResult.BackColor = System.Drawing.SystemColors.Control;
+            this.txbxResult.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txbxResult.ForeColor = System.Drawing.Color.Maroon;
+            this.txbxResult.Location = new System.Drawing.Point(96, 307);
+            this.txbxResult.Multiline = true;
+            this.txbxResult.Name = "txbxResult";
+            this.txbxResult.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txbxResult.Size = new System.Drawing.Size(200, 45);
+            this.txbxResult.TabIndex = 4;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(391, 450);
-            this.Controls.Add(this.lblResult);
+            this.Controls.Add(this.txbxResult);
             this.Controls.Add(this.picbxDrawing);
             this.Controls.Add(this.btnDraw);
             this.Controls.Add(this.lblProportion);
@@ -104,7 +107,7 @@ namespace PracticeTestWk3
         private System.Windows.Forms.Label lblProportion;
         private System.Windows.Forms.Button btnDraw;
         private System.Windows.Forms.PictureBox picbxDrawing;
-        private System.Windows.Forms.Label lblResult;
+        private System.Windows.Forms.TextBox txbxResult;
     }
 }
 
